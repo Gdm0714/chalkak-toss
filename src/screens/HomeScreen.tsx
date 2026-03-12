@@ -21,12 +21,13 @@ type NavigationProp = StackNavigationProp<any>;
 export const HomeScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp>();
   const {nearbyBooths, loading, error, fetchNearby} = usePhotoBoothStore();
-  const [location, setLocation] = useState<{lat: number; lng: number} | null>(
+  const [_location, setLocation] = useState<{lat: number; lng: number} | null>(
     null,
   );
 
   useEffect(() => {
     requestLocationAndFetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const requestLocationAndFetch = async () => {

@@ -28,6 +28,7 @@ export const SearchScreen: React.FC = () => {
       search(route.params.keyword);
     }
     return () => clearSearch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [route.params?.keyword]);
 
   const handleSearch = (keyword: string) => {
