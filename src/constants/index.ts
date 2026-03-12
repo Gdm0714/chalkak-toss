@@ -1,0 +1,45 @@
+export const API_BASE_URL = __DEV__
+  ? 'http://localhost:8082/api'
+  : 'https://api.chalkak.co.kr/api';
+
+export const DEFAULT_RADIUS = 3.0;
+
+export const COLORS = {
+  primary: '#E91E63',
+  primaryLight: '#FF6B9D',
+  accent: '#4FC3F7',
+  background: '#FFFFFF',
+  surface: '#F8F9FA',
+  text: '#191F28',
+  textSecondary: '#8B95A1',
+  textTertiary: '#B0B8C1',
+  border: '#E5E8EB',
+  error: '#F44336',
+  success: '#4CAF50',
+  warning: '#FF9800',
+  congestion: {
+    RELAXED: '#4CAF50',
+    NORMAL: '#8BC34A',
+    BUSY: '#FF9800',
+    VERY_BUSY: '#F44336',
+    UNKNOWN: '#9E9E9E',
+  },
+} as const;
+
+export const CONGESTION_LABELS: Record<string, string> = {
+  RELAXED: '여유',
+  NORMAL: '보통',
+  BUSY: '혼잡',
+  VERY_BUSY: '매우 혼잡',
+  UNKNOWN: '정보 없음',
+};
+
+export const BRANDS = [
+  '인생네컷',
+  '하루필름',
+  '포토이즘',
+  '포토그레이',
+  '셀픽스',
+  '포토시그니처',
+  '비룸',
+] as const;
