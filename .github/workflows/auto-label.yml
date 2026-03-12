@@ -1,0 +1,64 @@
+name: Auto Label Issues
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto-label based on title/body
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const title = issue.title.toLowerCase();
+            const body = (issue.body || '').toLowerCase();
+            const labels = [];
+
+            if (title.includes('bug') || title.includes('error') || title.includes('crash') ||
+                title.includes('broken') || title.includes('fail') || title.includes('not working')) {
+              labels.push('bug');
+            }
+
+            if (title.includes('feature') || title.includes('request') || title.includes('add') ||
+                title.includes('enhancement') || title.includes('suggestion')) {
+              labels.push('enhancement');
+            }
+
+            if (title.includes('how') || title.includes('?') || title.includes('question') ||
+                title.includes('help')) {
+              labels.push('question');
+            }
+
+            if (title.includes('doc') || title.includes('readme') || title.includes('typo')) {
+              labels.push('documentation');
+            }
+
+            if (body.includes('map') || body.includes('naver') || body.includes('location') ||
+                body.includes('gps')) {
+              labels.push('map');
+            }
+
+            if (body.includes('toss') || body.includes('sdk') || body.includes('miniapp') ||
+                body.includes('앱인토스')) {
+              labels.push('toss-sdk');
+            }
+
+            if (body.includes('android') || body.includes('ios')) {
+              labels.push('platform');
+            }
+
+            if (labels.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: labels
+              });
+              console.log(`Added labels: ${labels.join(', ')}`);
+            }
