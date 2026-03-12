@@ -5,7 +5,6 @@ import {
   ScrollView,
   StyleSheet,
   ActivityIndicator,
-  FlatList,
 } from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import type {RouteProp} from '@react-navigation/native';
@@ -29,6 +28,7 @@ export const DetailScreen: React.FC = () => {
   useEffect(() => {
     fetchDetail(boothId);
     loadReviews();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [boothId]);
 
   const loadReviews = async () => {
