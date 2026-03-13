@@ -52,6 +52,13 @@ yarn-error.log
 **/fastlane/screenshots
 **/fastlane/test_output
 
+# Certificates (mTLS)
+certs/*.pem
+certs/*.p12
+certs/*.key
+certs/*.crt
+certs/*.cer
+
 # Bundle artifact
 *.jsbundle
 

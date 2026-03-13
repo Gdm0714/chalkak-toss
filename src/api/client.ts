@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {API_BASE_URL} from '../constants';
+import {getSecurityHeaders} from './mtls';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -7,6 +8,12 @@ const apiClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+});
+
+apiClient.interceptors.request.use(config => {
+  const securityHeaders = getSecurityHeaders();
+  Object.assign(config.headers, securityHeaders);
+  return config;
 });
 
 apiClient.interceptors.response.use(

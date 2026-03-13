@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- 개발 환경: localhost 평문 허용 -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">localhost</domain>
+        <domain includeSubdomains="false">10.0.2.2</domain>
+    </domain-config>
+
+    <!-- 운영 환경: 인증서 피닝 -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">api.chalkak.co.kr</domain>
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </domain-config>
+
+    <!-- 토스 플랫폼 통신 -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">toss.im</domain>
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </domain-config>
+</network-security-config>
