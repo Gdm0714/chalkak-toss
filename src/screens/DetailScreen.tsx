@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   ActivityIndicator,
+  TouchableOpacity,
 } from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import type {RouteProp} from '@react-navigation/native';
@@ -13,6 +14,7 @@ import {reviewApi} from '../api/photoBoothApi';
 import {CongestionBadge} from '../components/CongestionBadge';
 import {ReviewCard} from '../components/ReviewCard';
 import {COLORS} from '../constants';
+import {shareMessage} from '../toss/tossSdk';
 import type {Review} from '../types';
 
 type DetailRouteProp = RouteProp<{Detail: {boothId: number}}, 'Detail'>;
@@ -73,6 +75,15 @@ export const DetailScreen: React.FC = () => {
         {selectedBooth.operatingHours && (
           <Text style={styles.hours}>{selectedBooth.operatingHours}</Text>
         )}
+        <TouchableOpacity
+          style={styles.shareButton}
+          onPress={() =>
+            shareMessage(
+              `${selectedBooth.name} - ${selectedBooth.address} (찰칵에서 찾았어요!)`,
+            )
+          }>
+          <Text style={styles.shareButtonText}>공유하기</Text>
+        </TouchableOpacity>
       </View>
 
       {/* 혼잡도 */}
@@ -212,6 +223,19 @@ const styles = StyleSheet.create({
   reviewCount: {
     fontSize: 14,
     color: COLORS.textSecondary,
+  },
+  shareButton: {
+    marginTop: 12,
+    backgroundColor: COLORS.primary,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    alignSelf: 'flex-start',
+  },
+  shareButtonText: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: '600',
   },
   bottomSpacer: {
     height: 40,
