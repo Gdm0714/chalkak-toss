@@ -1,12 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
   FlatList,
   StyleSheet,
   ActivityIndicator,
-  Platform,
-  PermissionsAndroid,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {StackNavigationProp} from '@react-navigation/stack';
@@ -14,6 +12,7 @@ import {usePhotoBoothStore} from '../store/usePhotoBoothStore';
 import {PhotoBoothCard} from '../components/PhotoBoothCard';
 import {SearchBar} from '../components/SearchBar';
 import {COLORS, DEFAULT_RADIUS} from '../constants';
+import {fetchCurrentLocation} from '../toss/tossSdk';
 import type {PhotoBooth} from '../types';
 
 type NavigationProp = StackNavigationProp<any>;
@@ -21,9 +20,6 @@ type NavigationProp = StackNavigationProp<any>;
 export const HomeScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp>();
   const {nearbyBooths, loading, error, fetchNearby} = usePhotoBoothStore();
-  const [_location, setLocation] = useState<{lat: number; lng: number} | null>(
-    null,
-  );
 
   useEffect(() => {
     requestLocationAndFetch();
@@ -31,31 +27,8 @@ export const HomeScreen: React.FC = () => {
   }, []);
 
   const requestLocationAndFetch = async () => {
-    try {
-      if (Platform.OS === 'android') {
-        const granted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-        );
-        if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
-          fetchNearby(37.5665, 126.978, DEFAULT_RADIUS);
-          return;
-        }
-      }
-
-      (navigator as any).geolocation?.getCurrentPosition(
-        (position: any) => {
-          const {latitude, longitude} = position.coords;
-          setLocation({lat: latitude, lng: longitude});
-          fetchNearby(latitude, longitude, DEFAULT_RADIUS);
-        },
-        () => {
-          fetchNearby(37.5665, 126.978, DEFAULT_RADIUS);
-        },
-        {enableHighAccuracy: true, timeout: 5000},
-      );
-    } catch {
-      fetchNearby(37.5665, 126.978, DEFAULT_RADIUS);
-    }
+    const {latitude, longitude} = await fetchCurrentLocation();
+    fetchNearby(latitude, longitude, DEFAULT_RADIUS);
   };
 
   const handleSearch = (keyword: string) => {
