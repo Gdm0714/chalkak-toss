@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
   },
   list: {
     paddingVertical: 8,
+    paddingBottom: 24,
   },
   center: {
     flex: 1,

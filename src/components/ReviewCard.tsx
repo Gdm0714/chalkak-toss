@@ -32,9 +32,9 @@ export const ReviewCard: React.FC<Props> = ({review}) => {
 
 const styles = StyleSheet.create({
   card: {
-    paddingVertical: 14,
+    paddingVertical: 16,
     borderBottomWidth: 1,
-    borderBottomColor: COLORS.border,
+    borderBottomColor: COLORS.surface,
   },
   header: {
     flexDirection: 'row',
@@ -59,6 +59,6 @@ const styles = StyleSheet.create({
   content: {
     fontSize: 14,
     color: COLORS.text,
-    lineHeight: 20,
+    lineHeight: 22,
   },
 });

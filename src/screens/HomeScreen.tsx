@@ -84,22 +84,26 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.surface,
   },
   header: {
+    backgroundColor: COLORS.background,
     paddingHorizontal: 20,
-    paddingTop: 16,
-    paddingBottom: 8,
+    paddingTop: 20,
+    paddingBottom: 12,
   },
   title: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: '800',
-    color: COLORS.primary,
+    color: COLORS.text,
+    letterSpacing: -0.5,
   },
   subtitle: {
     fontSize: 14,
     color: COLORS.textSecondary,
-    marginTop: 2,
+    marginTop: 4,
+    lineHeight: 20,
   },
   list: {
     paddingVertical: 8,
+    paddingBottom: 24,
   },
   center: {
     flex: 1,
