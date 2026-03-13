@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    height: 44,
+    height: 48,
     backgroundColor: COLORS.surface,
     borderRadius: 12,
     paddingHorizontal: 16,
@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
     color: COLORS.text,
   },
   button: {
-    height: 44,
-    paddingHorizontal: 16,
+    height: 48,
+    paddingHorizontal: 20,
     backgroundColor: COLORS.primary,
     borderRadius: 12,
     justifyContent: 'center',

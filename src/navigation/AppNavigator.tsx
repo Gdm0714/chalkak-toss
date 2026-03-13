@@ -24,14 +24,15 @@ export const AppNavigator: React.FC = () => {
             backgroundColor: COLORS.background,
             elevation: 0,
             shadowOpacity: 0,
-            borderBottomWidth: 0.5,
-            borderBottomColor: COLORS.border,
+            borderBottomWidth: 0,
           },
           headerTintColor: COLORS.text,
           headerTitleStyle: {
             fontWeight: '700',
-            fontSize: 17,
+            fontSize: 18,
+            letterSpacing: -0.3,
           },
+          headerTitleAlign: 'left',
           cardStyle: {backgroundColor: COLORS.background},
         }}>
         <Stack.Screen

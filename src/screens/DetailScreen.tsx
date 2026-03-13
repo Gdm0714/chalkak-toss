@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   },
   section: {
     paddingHorizontal: 20,
-    paddingVertical: 16,
+    paddingVertical: 20,
     borderBottomWidth: 8,
     borderBottomColor: COLORS.surface,
   },
@@ -159,7 +159,8 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: '700',
     color: COLORS.text,
-    marginBottom: 12,
+    marginBottom: 16,
+    letterSpacing: -0.3,
   },
   brandRow: {
     flexDirection: 'row',
@@ -185,12 +186,14 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '800',
     color: COLORS.text,
-    marginBottom: 6,
+    marginBottom: 8,
+    letterSpacing: -0.5,
   },
   address: {
     fontSize: 14,
     color: COLORS.textSecondary,
     marginBottom: 4,
+    lineHeight: 20,
   },
   hours: {
     fontSize: 13,
@@ -225,16 +228,18 @@ const styles = StyleSheet.create({
     color: COLORS.textSecondary,
   },
   shareButton: {
-    marginTop: 12,
+    marginTop: 16,
     backgroundColor: COLORS.primary,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 8,
+    height: 48,
+    paddingHorizontal: 24,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
     alignSelf: 'flex-start',
   },
   shareButtonText: {
     color: '#FFFFFF',
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: '600',
   },
   bottomSpacer: {
